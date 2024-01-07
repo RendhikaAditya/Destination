@@ -57,12 +57,7 @@ class DestinationResource extends Resource
                 Select::make('category_id')
                     ->label('Category')
                     ->options($categories)
-                    ->placeholder('Select a Category'),                
-                MultiSelect::make('facility_name')
-                    ->options($facilities)
-                    ->multiple()
-                    ->searchable()
-                    ->placeholder('Pilih fasilitas')
+                    ->placeholder('Select a Category')
                     // ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                     //     $encryptedFileName = uniqid().'.'.$file->getClientOriginalExtension();
                     //     return Picture::create([
