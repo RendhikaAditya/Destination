@@ -15,6 +15,8 @@ use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Livewire\TemporaryUploadedFile;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Grid;
 // use Filament\Resources\Forms\Components\FileUpload;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -40,8 +42,11 @@ class DestinationResource extends Resource
 
         return $form
             ->schema([
-                TextInput::make('name')->label('Name'),
-                TextInput::make('description')->label('Description'),
+                Grid::make(1)
+                    ->schema([                            
+                        TextInput::make('name')->label('Name'),
+                        RichEditor::make('description')->label('Description'), 
+                    ]),
                 TextInput::make('address')->label('Address'),
                 Select::make('city_id')
                     ->label('City')
@@ -51,7 +56,7 @@ class DestinationResource extends Resource
                     ->label('Category')
                     ->options($categories)
                     ->placeholder('Select a Category'),                
-                MultiSelect::make('Nama_Field')
+                MultiSelect::make('facility_name')
                     ->options($facilities)
                     ->multiple()
                     ->searchable()
@@ -61,13 +66,13 @@ class DestinationResource extends Resource
                     ->acceptedFileTypes(['image/jpeg', 'image/png'])
                     ->directory('destination-pictures')
                     ->multiple()
-                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        $encryptedFileName = uniqid().'.'.$file->getClientOriginalExtension();
-                        return Picture::create([
-                            'name' => $encryptedFileName,
-                            'destination_id' => "1",
-                        ])->getKey();
-                    }),
+                    // ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                    //     $encryptedFileName = uniqid().'.'.$file->getClientOriginalExtension();
+                    //     return Picture::create([
+                    //         'name' => $encryptedFileName,
+                    //         'destination_id' => "1",
+                    //     ])->getKey();
+                    // }),
             ]);
     }
 
