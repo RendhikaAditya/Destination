@@ -10,6 +10,7 @@
     <img src="https://img.shields.io/badge/Laravel-9.19-ff69b4?style=flat-square" alt="Laravel Version">
   </a>
 </p>
+
 ## Deskripsi
 
 Sistem Informasi Objek Wisata adalah sebuah web informasi yang berisi kumpulan objek wisata yang dapat mempermudah pengguna untuk mencari dan menentukan target destinasi wisata. Sistem ini menggunakan PHP 8.0.2 dan framework Laravel 9.19 untuk pengembangannya. Selain itu, sistem ini juga memanfaatkan Firebase 2.17 sebagai salah satu komponen dalam penyimpanan data.
