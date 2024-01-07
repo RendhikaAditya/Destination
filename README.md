@@ -1,16 +1,13 @@
 # Sistem Informasi Objek Wisata
 <p align="center">
   <a href="https://www.php.net/" target="_blank">
-    <img src="https://img.shields.io/badge/PHP-%5BPHP_VERSION%5D-blue?style=flat-square" alt="PHP Version">
+    <img src="https://img.shields.io/badge/PHP-8.0.2-blue?style=flat-square" alt="PHP Version">
   </a>
   <a href="https://filamentphp.com/" target="_blank">
-    <img src="https://img.shields.io/badge/Filament-%5BFILAMENT_VERSION%5D-blueviolet?style=flat-square" alt="Filament Version">
+    <img src="https://img.shields.io/badge/Filament-2.17-blueviolet?style=flat-square" alt="Filament Version">
   </a>
   <a href="https://laravel.com/" target="_blank">
-    <img src="https://img.shields.io/badge/Laravel-%5BLARAVEL_VERSION%5D-ff69b4?style=flat-square" alt="Laravel Version">
-  </a>
-  <a href="https://packagist.org/packages/laravel/framework" target="_blank">
-    <img src="https://img.shields.io/packagist/l/laravel/framework" alt="License">
+    <img src="https://img.shields.io/badge/Laravel-9.19-ff69b4?style=flat-square" alt="Laravel Version">
   </a>
 </p>
 ## Deskripsi
