@@ -47,9 +47,9 @@ class DestinationResource extends Resource
                 Grid::make(1)
                     ->schema([                            
                         TextInput::make('name')->label('Name'),
-                        RichEditor::make('description')->label('Description'), 
+                        RichEditor::make('description')->label('Description'),
+                        TextInput::make('address')->label('Address'),
                     ]),
-                TextInput::make('address')->label('Address'),
                 Select::make('city_id')
                     ->label('City')
                     ->options($cities)
