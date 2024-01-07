@@ -9,4 +9,7 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateCity extends CreateRecord
 {
     protected static string $resource = CityResource::class;
+    function getRedirectUrl() : string {
+        return $this->getResource()::getUrl('index');
+    }
 }
