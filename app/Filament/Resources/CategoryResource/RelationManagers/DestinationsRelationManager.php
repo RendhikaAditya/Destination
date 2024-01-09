@@ -1,40 +1,32 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\CategoryResource\RelationManagers;
 
 use Filament\Forms;
-use App\Models\City;
+use Filament\Resources\Form;
+use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Resources\Table;
 use Filament\Tables;
-use SimpanDestination;
 use App\Models\Picture;
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Facility;
-use App\Models\Destination;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Resources\Resource;
-use Livewire\TemporaryUploadedFile;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Grid;
-// use Filament\Resources\Forms\Components\FileUpload;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Forms\Components\FileUpload;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\MultiSelect;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\TextColumn;
+use App\Models\Destination;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\DestinationResource\Pages;
-use App\Filament\Resources\DestinationResource\RelationManagers;
-use App\Filament\Resources\PictureResource\RelationManagers\PicturesRelationManager;
-use App\Filament\Resources\DestinationFacilityResource\RelationManagers\DestinationFacilitiesRelationManager;
 
-class DestinationResource extends Resource
+class DestinationsRelationManager extends RelationManager
 {
-    protected static ?string $model = Destination::class;
+    protected static string $relationship = 'destinations';
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Form $form): Form
     {
@@ -47,9 +39,9 @@ class DestinationResource extends Resource
                 Grid::make(1)
                     ->schema([                            
                         TextInput::make('name')->label('Name'),
-                        RichEditor::make('description')->label('Description'),
-                        TextInput::make('address')->label('Address'),
+                        RichEditor::make('description')->label('Description'), 
                     ]),
+                TextInput::make('address')->label('Address'),
                 Select::make('city_id')
                     ->label('City')
                     ->options($cities)
@@ -57,7 +49,17 @@ class DestinationResource extends Resource
                 Select::make('category_id')
                     ->label('Category')
                     ->options($categories)
-                    ->placeholder('Select a Category')
+                    ->placeholder('Select a Category'),                
+                MultiSelect::make('facility_name')
+                    ->options($facilities)
+                    ->multiple()
+                    ->searchable()
+                    ->placeholder('Pilih fasilitas'),
+                FileUpload::make('pictures')
+                    ->label('Upload Pictures')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png'])
+                    ->directory('destination-pictures')
+                    ->multiple()
                     // ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                     //     $encryptedFileName = uniqid().'.'.$file->getClientOriginalExtension();
                     //     return Picture::create([
@@ -80,31 +82,15 @@ class DestinationResource extends Resource
             ->filters([
                 //
             ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+            ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
-    }
-    
-    
-    public static function getRelations(): array
-    {
-        return [
-            PicturesRelationManager::class,
-            DestinationFacilitiesRelationManager::class
-        ];
-    }
-    
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListDestinations::route('/'),
-            'create' => Pages\CreateDestination::route('/create'),
-            'edit' => Pages\EditDestination::route('/{record}/edit'),
-        ];
     }    
 }

@@ -18,7 +18,7 @@ use Filament\Resources\Forms\Components\Concerns\InteractsWithUploadedFiles;
 class Picture extends Model
 {
 
-    protected $fillable = ['name', 'destination_id'];
+    protected $fillable = ['picture', 'destination_id'];
 
     public function destination()
     {
