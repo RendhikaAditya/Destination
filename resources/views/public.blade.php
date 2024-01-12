@@ -54,34 +54,25 @@
             <div class="box box-solid">
                 <div class="box-body">
                     <div class="row">
+                        @foreach($destinations as $destination)
                         <div class="col-md-3 text-center text-blue">
                             <div class="box box-solid box-warning">
-                                <img src="{{asset('foto/d.jpg')}}" class="img-responsive">
-                                <b>PANTAI PADANG</b>
+                                @if($destination->pictures->count() > 0)
+                                    <img src="{{ asset('storage/' . $destination->pictures[0]->picture) }}" class="img-responsive">
+                                @else
+                                    <!-- Gambar default jika tidak ada gambar -->
+                                    <img src="{{ asset('path/to/default/image.jpg') }}" class="img-responsive">
+                                @endif
+
+                                <b>{{ $destination->name }}</b>
                             </div>
                         </div>
-                        <div class="col-md-3 text-center text-blue">
-                            <div class="box box-solid box-warning">
-                                <img src="{{asset('foto/d.jpg')}}" class="img-responsive">
-                                  <b>PANTAI PADANG</b>
-                            </div>
-                        </div>
-                        <div class="col-md-3 text-center text-blue">
-                            <div class="box box-solid box-warning">
-                                <img src="{{asset('foto/d.jpg')}}" class="img-responsive">
-                                  <b>PANTAI PADANG</b>
-                            </div>
-                        </div>
-                        <div class="col-md-3 text-center text-blue">
-                            <div class="box box-solid box-warning">
-                                <img src="{{asset('foto/d.jpg')}}" class="img-responsive">
-                                  <b>PANTAI PADANG</b>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </section>
+
     </div>
 </div>
 
