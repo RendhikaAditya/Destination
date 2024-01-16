@@ -3,7 +3,7 @@ name: Deploy ke cPanel menggunakan FTP
 on:
   push:
     branches: [ main ]
-name: 🚀 Deploy website on push
+
 jobs:
   web-deploy:
     name: 🎉 Auto Deploy
