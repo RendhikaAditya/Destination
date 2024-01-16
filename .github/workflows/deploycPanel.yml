@@ -1,4 +1,5 @@
-name: Deploy Website to CPanel
+name: Deploy ke cPanel menggunakan FTP
+
 on:
   push:
     branches:
@@ -23,9 +24,6 @@ jobs:
     - name: Build assets
       run: php artisan asset:publish
 
-    - name: Deploy to CPanel
-      uses: artifacthub/deploy-cpanel-action@v1
-      with:
-        ftp-server: ${{ secrets.FTP_SERVER }}
-        ftp-username: ${{ secrets.FTP_USERNAME }}
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
+    - name: Deploy to cPanel menggunakan FTP
+      run: |
+        lftp -u ${{ secrets.FTP_USERNAME }},"${{ secrets.FTP_PASSWORD }}" ${{ secrets.FTP_SERVER }} -e "mirror -R public/ public_html/; exit"
