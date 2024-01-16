@@ -1,9 +1,7 @@
-name: Deploy ke cPanel menggunakan FTP
-
 on:
   push:
-    branches: [ main ]
-
+    branches: [ ftp ]
+name: 🚀 Deploy website on push
 jobs:
   web-deploy:
     name: 🎉 Auto Deploy
@@ -12,14 +10,14 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2.3.2
 
-    - uses: actions/checkout@v3
-    - name: rsync deployments
-      uses: burnett01/rsync-deployments@6.0.0
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.4
       with:
-        switches: -avzr --delete --exclude=".git"  --exclude=".github"
-        path: src/
-        remote_path: ${{ secrets.DEPLOY_PATH }}
-        remote_host: ${{ secrets.DEPLOY_HOST }}
-        remote_user: ${{ secrets.DEPLOY_USER }}
-        remote_key: ${{ secrets.DEPLOY_KEY }}
-        remote_port: ${{ secrets.DEPLOY_PORT }}
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASS }}
+        protocol: ftps
+        port: ${{ secrets.FTP_PORT }}
+        exclude: .git*
+          - .git*/**
+          - .github
