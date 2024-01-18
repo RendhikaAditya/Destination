@@ -57,19 +57,22 @@
                         @foreach($destinations as $destination)
                         <div class="col-md-3 text-center text-blue">
                             <div class="box box-solid box-warning">
-                                @if($destination->pictures->count() > 0)
-                                <img src="{{ asset('storage/' . $destination->pictures[0]->picture) }}"
-                                    class="img-responsive" data-toggle="modal"
-                                    data-target="#destinationModal{{ $destination->id }}">
-                                @else
-                                <!-- Gambar default jika tidak ada gambar -->
-                                <img src="{{ asset('path/to/default/image.jpg') }}" class="img-responsive">
-                                @endif
-
-                                <b>{{ $destination->name }}</b>
+                                <a class="card" href="{{ url("destination/show/{$destination->id}") }}">
+                                    @if($destination->pictures->count() > 0)
+                                    <div class="card-img-container">
+                                        <img src="{{ asset('storage/' . $destination->pictures[0]->picture) }}"
+                                            class="img-responsive">
+                                    </div>
+                                    @else
+                                    <!-- Gambar default jika tidak ada gambar -->
+                                    <img src="{{ asset('path/to/default/image.jpg') }}" class="img-responsive">
+                                    @endif
+    
+                                    <b>{{ $destination->name }}</b>
+                                </a>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="destinationModal{{ $destination->id }}" tabindex="-1"
+                                {{-- <div class="modal fade" id="destinationModal{{ $destination->id }}" tabindex="-1"
                                     role="dialog" aria-labelledby="destinationModalLabel{{ $destination->id }}">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -100,7 +103,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         @endforeach

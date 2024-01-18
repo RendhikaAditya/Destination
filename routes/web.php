@@ -15,4 +15,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('/');
+Route::get('/lokasi', [HomeController::class, 'index2'])->name('/lokasi');
+Route::get('/destination/show/{id}', [HomeController::class, 'show'])->name('/destination/show');
+Route::get('/location/show/{id}', [HomeController::class, 'show1'])->name('/location/show');
 // Route::get('/admin/login', [HomeController::class, 'login'])->name('login');
