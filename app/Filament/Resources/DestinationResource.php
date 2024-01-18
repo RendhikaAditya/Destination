@@ -49,6 +49,7 @@ class DestinationResource extends Resource
                         TextInput::make('name')->label('Name'),
                         RichEditor::make('description')->label('Description'),
                         TextInput::make('address')->label('Address'),
+                        TextInput::make('embed_map')->label('Map Embed'),
                     ]),
                 Select::make('city_id')
                     ->label('City')
