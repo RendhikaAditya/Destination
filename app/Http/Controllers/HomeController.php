@@ -13,10 +13,7 @@ class HomeController extends Controller
     public function index()
     {
         $destinations = Destination::all();
-        // echo '<pre>';
-        // print_r($destinations);
-        // echo '</pre>';
-        // die();
+
         $data = [
             'title' => 'SIO WISATA',
             'destinations' => $destinations
@@ -24,7 +21,6 @@ class HomeController extends Controller
         return view('public', $data);
     }
 
-    //method index lokasi
     public function index2()
     {
         $cities = City::all();
@@ -48,10 +44,13 @@ class HomeController extends Controller
         //get data by ID
         $destinations = Destination::findOrFail($id);
         $categories = Category::all();
+
+        $embed_map = $destinations->embed_map;
         $data = [
             'title' => 'SIO WISATA',
             'destinations' => $destinations,
-            'categories' => $categories
+            'categories' => $categories,
+            'embed_map' => $embed_map
         ];
 
         return view('detail.showDestination', $data);
@@ -79,11 +78,11 @@ class HomeController extends Controller
         //     ->select('destinations.*')
         //     ->whereColumn('city_id', '=', $id)
         //     ->get();
-        
+
         $data = [
             'title' => 'SIO WISATA',
             'destinations' => $destinations,
-            'city' => $city 
+            'city' => $city
         ];
 
         return view('detail.showLocation', $data);
