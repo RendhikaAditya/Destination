@@ -16,3 +16,6 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('/');
 // Route::get('/admin/login', [HomeController::class, 'login'])->name('login');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('destination/{id}', [HomeController::class, 'viewDestination']);
