@@ -12,7 +12,7 @@ class Destination extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'address', 'city_id', 'category_id'];
+    protected $fillable = ['name', 'description', 'address', 'city_id', 'category_id', 'embed_map'];
 
     public function city()
     {
