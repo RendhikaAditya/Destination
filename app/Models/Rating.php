@@ -12,6 +12,6 @@ class Rating extends Model
 
     public function visitor()
     {
-        return $this->belongsTo(visitor::class);
+        return $this->belongsTo(Visitor::class);
     }
 }

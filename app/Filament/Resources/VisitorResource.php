@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\VisitorResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\VisitorResource\RelationManagers;
+use App\Filament\Resources\RatingResource\RelationManagers\RatingsRelationManager;
 
 class VisitorResource extends Resource
 {
@@ -36,14 +37,7 @@ class VisitorResource extends Resource
                     ]),
             ]);
     }
-    
-    public static function getRelations(): array
-    {
-        return [
-            PicturesRelationManager::class,
-            DestinationFacilitiesRelationManager::class
-        ];
-    }
+
 
     public static function table(Table $table): Table
     {
@@ -66,12 +60,12 @@ class VisitorResource extends Resource
             ]);
     }
     
-    // public static function getRelations(): array
-    // {
-    //     return [
-    //         //
-    //     ];
-    // }
+    public static function getRelations(): array
+    {
+        return [
+            RatingsRelationManager::class
+        ];
+    }
     
     public static function getPages(): array
     {
