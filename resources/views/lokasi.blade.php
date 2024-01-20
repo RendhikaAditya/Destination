@@ -51,23 +51,25 @@
                     </div>
 
                     <div class="box-body">
-                        <div class="row">
-                            @foreach($cities as $city)
-                            <div class="col-lg-3 col-xs-6">
-                                <!-- small box -->
-                                <div class="small-box progress-bar-light-blue">
-                                    <div class="inner">
-                                        <h2 style="color: white; text-align: center">{{ $city->city_name }}</h2>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="fa fa-map-signs"></i>
-                                    </div>
-                                    <a  href="{{ url("location/show/{$city->id}") }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
+    <div class="row">
+        @foreach($cities as $city)
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box progress-bar-light-blue">
+                    <div class="inner">
+                        <h2 style="color: white; text-align: center">{{ $city->city_name }}</h2>
                     </div>
+                    <div class="icon">
+                        <i class="fa fa-map-signs"></i>
+                    </div>
+                    <a  href="{{ url("location/show/" . encrypt($city->id)) }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+
                 </div>
             </div>
         </section>

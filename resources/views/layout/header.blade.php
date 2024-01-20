@@ -27,8 +27,8 @@
         </div>
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class=""><a href="{{url('/')}}">Objek Wisata</a></li>
-            <li><a href="{{url('/lokasi')}}">Lokasi</a></li>
+            {{-- <li class=""><a href="{{url('/')}}">Objek Wisata</a></li> --}}
+            <li><a href="{{url('/lokasi')}}">Lokasi Objek Wisata</a></li>
           </ul>
         </div>
         <div class="navbar-custom-menu">

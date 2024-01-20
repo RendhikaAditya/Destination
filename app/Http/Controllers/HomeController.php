@@ -21,7 +21,7 @@ class HomeController extends Controller
         return view('public', $data);
     }
 
-    public function index2()
+    public function lokasi()
     {
         $cities = City::all();
 
@@ -32,17 +32,10 @@ class HomeController extends Controller
         return view('lokasi', $data);
     }
 
-    // method menampilkan detail data objek wisata
-    /**
-     * show
-     * 
-     * @param mixed $id
-     * @return void
-     */
-    public function show($id)
+    public function showdestinasi($id)
     {
-        //get data by ID
-        $destinations = Destination::findOrFail($id);
+        $id = decrypt($id);
+        $destinations = Destination::with(['destination_facilities.facility', 'pictures'])->findOrFail($id);
         $categories = Category::all();
 
         $embed_map = $destinations->embed_map;
@@ -56,33 +49,15 @@ class HomeController extends Controller
         return view('detail.showDestination', $data);
     }
 
-    // method menampilkan detail lokasi data objek wisata
-    /**
-     * show
-     * 
-     * @param mixed $id
-     * @return void
-     */
-    public function show1($id)
+    public function showlokasi($id)
     {
-        //get data by ID
+        $id = decrypt($id);
         $city = City::findOrFail($id);
-        $destinations = Destination::whereCity_id($id)->first();
-
-        // $destinations = Destination::all();
-
-        // $destinations = DB::table('destinations')
-        //     ->join('pictures', 'id', '=', 'pictures.destination_id')
-        //     ->join('cities', 'city_id', '=', 'cities.id')
-        //     ->join('categories', 'category_id', '=', 'categories.id')
-        //     ->select('destinations.*')
-        //     ->whereColumn('city_id', '=', $id)
-        //     ->get();
-
+        $destinations = Destination::where('city_id', $id)->get();
         $data = [
-            'title' => 'SIO WISATA',
+            'title'        => 'SIO WISATA',
             'destinations' => $destinations,
-            'city' => $city
+            'city'         => $city
         ];
 
         return view('detail.showLocation', $data);

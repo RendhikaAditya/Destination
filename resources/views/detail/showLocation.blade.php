@@ -21,21 +21,6 @@
 
         <section class="content">
             <div class="row">
-                {{-- <div class="box box-solid box-widget">
-                    <div class="box-header">
-                        <span>
-                            <a href="/" style="color: black;">
-                                Home
-                            </a>
-                        </span>
-                        <div class="ionicons ion-chevron-right"></div>
-                        <span>
-                            <a href="/lokasi">
-                                Lokasi
-                            </a>
-                        </span>
-                    </div>
-                </div> --}}
                 <div class="box box-solid">
                     <div class="box-header">
                         <h1>
@@ -45,30 +30,23 @@
 
                     <div class="box-body">
                         <div class="row">
-
-                            {{-- @foreach ($city as $city)
-                                @if ($destinations->city_id == $id) --}}
-                                    {{-- @foreach($destinations as $destinations) --}}
-                                    <div class="col-md-3 text-center text-blue">
-                                        <div class="box box-solid box-warning">
-                                            <a class="card" href="{{ url("destination/show/{$destinations->id}") }}">
-                                                @if($destinations->pictures->count() > 0)
+                            @foreach($destinations as $destination)
+                                <div class="col-md-3 text-center text-blue">
+                                    <div class="box box-solid box-warning">
+                                        <a class="card" href="{{ url("destination/show/" . encrypt($destination->id)) }}">
+                                            @if($destination->pictures->count() > 0)
                                                 <div class="card-img-container">
-                                                    <img src="{{ asset('storage/' . $destinations->pictures[0]->picture) }}"
-                                                        class="img-responsive">
+                                                    <img src="{{ asset('storage/' . $destination->pictures[0]->picture) }}" class="img-responsive">
                                                 </div>
-                                                @else
+                                            @else
                                                 <!-- Gambar default jika tidak ada gambar -->
                                                 <img src="{{ asset('path/to/default/image.jpg') }}" class="img-responsive">
-                                                @endif
-                
-                                                <b>{{ $destinations->name }}</b>
-                                            </a>
-                                        </div>
+                                            @endif
+                                            <b>{{ $destination->name }}</b>
+                                        </a>
                                     </div>
-                                    {{-- @endforeach --}}
-                                {{-- @endif
-                            @endforeach --}}
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

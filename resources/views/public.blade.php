@@ -57,53 +57,19 @@
                         @foreach($destinations as $destination)
                         <div class="col-md-3 text-center text-blue">
                             <div class="box box-solid box-warning">
-                                <a class="card" href="{{ url("destination/show/{$destination->id}") }}">
+                                <a class="card" href="{{ url("destination/show/" . encrypt($destination->id)) }}">
                                     @if($destination->pictures->count() > 0)
                                     <div class="card-img-container">
                                         <img src="{{ asset('storage/' . $destination->pictures[0]->picture) }}"
                                             class="img-responsive">
                                     </div>
                                     @else
-                                    <!-- Gambar default jika tidak ada gambar -->
                                     <img src="{{ asset('path/to/default/image.jpg') }}" class="img-responsive">
                                     @endif
     
                                     <b>{{ $destination->name }}</b>
                                 </a>
 
-                                <!-- Modal -->
-                                {{-- <div class="modal fade" id="destinationModal{{ $destination->id }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="destinationModalLabel{{ $destination->id }}">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title"
-                                                    id="destinationModalLabel{{ $destination->id }}">
-                                                    {{ $destination->name }}</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                {!! strip_tags($destination->description) !!}
-
-                                                @if($destination->pictures->count() > 0)
-                                                <div class="row">
-                                                    @foreach($destination->pictures as $picture)
-                                                    <div class="col-md-3">
-                                                        <img src="{{ asset('storage/' . $picture->picture) }}"
-                                                            class="img-responsive" alt="Picture">
-                                                    </div>
-                                                    @endforeach
-                                                </div>
-                                                @endif
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default"
-                                                    data-dismiss="modal">Tutup</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
                         @endforeach
