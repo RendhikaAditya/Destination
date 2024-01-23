@@ -3,12 +3,13 @@
 namespace App\Filament\Resources\RatingResource\RelationManagers;
 
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\RelationManagers\RelationManager;
 
 class RatingsRelationManager extends RelationManager
 {
@@ -30,8 +31,10 @@ class RatingsRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('rating'),
-                Tables\Columns\TextColumn::make('coment'),
+                TextColumn::make('rating'),
+                TextColumn::make('coment'),
+                TextColumn::make('visitor.name')->sortable()->searchable(),
+                TextColumn::make('destination.name')->sortable()->searchable(),
             ])
             ->filters([
                 //

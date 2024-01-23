@@ -33,4 +33,7 @@ class Destination extends Model
     {
         return $this->hasMany(DestinationFacility::class);
     }
+    function ratings() {
+        return $this->hasMany(Rating::class);
+    }
 }
