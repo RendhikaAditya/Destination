@@ -13,20 +13,21 @@ use App\Models\Destination;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Grid;
 use Livewire\TemporaryUploadedFile;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Grid;
-// use Filament\Resources\Forms\Components\FileUpload;
 use Filament\Tables\Columns\TextColumn;
+// use Filament\Resources\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\MultiSelect;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\DestinationResource\Pages;
 use App\Filament\Resources\DestinationResource\RelationManagers;
+use App\Filament\Resources\RatingResource\RelationManagers\RatingsRelationManager;
 use App\Filament\Resources\PictureResource\RelationManagers\PicturesRelationManager;
 use App\Filament\Resources\DestinationFacilityResource\RelationManagers\DestinationFacilitiesRelationManager;
 
@@ -96,7 +97,8 @@ class DestinationResource extends Resource
     {
         return [
             PicturesRelationManager::class,
-            DestinationFacilitiesRelationManager::class
+            DestinationFacilitiesRelationManager::class,
+            RatingsRelationManager::class
         ];
     }
     

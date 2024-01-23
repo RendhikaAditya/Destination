@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Rating extends Model
 {
     use HasFactory;
-    protected $fillable = ['rating','coment', 'visitor_id'];
+    protected $fillable = ['rating','coment', 'visitor_id', 'destination_id'];
 
     public function visitor()
     {
         return $this->belongsTo(Visitor::class);
+    }
+
+    function destination() {
+        return $this->belongsTo(Destination::class);
     }
 }
