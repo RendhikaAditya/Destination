@@ -32,14 +32,55 @@
           </ul>
         </div>
         <div class="navbar-custom-menu">
-						<ul class="nav navbar-nav">
-							<li>
-								<a href="{{url('admin/login')}}">
-									<i class="fa fa-sign-in"></i> Login
-								</a>
-							</li>
-						</ul>
-					</div>
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="{{url('/login')}}">
+                <i class="fa fa-sign-in"></i> Login
+              </a>
+            </li>
+            <li>
+              <a href="/logout">
+                <i class="fa fa-sign-out"></i> Logout
+              </a>
+            </li>
+          </ul>
+
+          {{-- @if (Auth::guard('visitor'))
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/logout">
+                <i class="fa fa-sign-out"></i> Logout
+              </a>
+            </li>
+          </ul>
+          @else
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="{{url('/login')}}">
+                <i class="fa fa-sign-in"></i> Login
+              </a>
+            </li>
+          </ul>
+          @endif --}}
+
+          {{-- @if (Auth::check())
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="/logout">
+                  <i class="fa fa-sign-out"></i> Logout
+                </a>
+              </li>
+            </ul>
+          @else
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="{{url('/login')}}">
+                  <i class="fa fa-sign-in"></i> Login
+                </a>
+              </li>
+            </ul>
+          @endif --}}
+				</div>
       </div>
     </nav>
   </header>

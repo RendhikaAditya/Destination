@@ -2,6 +2,13 @@
 @section('content')
 <div class="content-wrapper">
     <div class="container">
+        @if(session('success'))
+        <div class="box box-solid">
+            <div class="alert" role="alert"> 
+                {{session('success')}} <a style="text-transform: capitalize; color:black;">{{Auth::guard('visitor')->user()->name}}</a>
+            </div>
+        </div>
+        @endif 
         <section class="content-header">
             <h1>
                 Aplikasi SIO Wisata
@@ -44,14 +51,23 @@
             </div>
         </div>
 
-        <section class="content-header">
+        {{-- <section class="content-header">
             <h1>
                 <b>Objek Wisata</b>
             </h1>
-        </section>
+        </section> --}}
 
         <section class="content">
-            <div class="box box-solid">
+            <div class="row">
+                <div class="box box-solid">
+                    <div class="box-header">
+                        <h1>
+                            <b>Objek Wisata</b>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="box-body">
                     <div class="row">
                         @foreach($destinations as $destination)
