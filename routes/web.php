@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\VisitorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,10 @@ Route::get('/location/show/{id}', [HomeController::class, 'showlokasi'])->name('
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'actionlogin'])->name('actionlogin'); // Route untuk menangani form login POST
 Route::get('/logout', [LoginController::class, 'actionlogout']);
-    
+
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'actionregister'])->name('actionregister'); // Route untuk menangani form REGISTER POST
 
+Route::get('/visitor', [VisitorController::class, 'index'])->name('visitor');
+Route::post('/submit-rating/{destination_id}', [VisitorController::class, 'rating'])->name('submit_rating');
+Route::get('/destinationvisitor/show/{id}', [VisitorController::class, 'showdestinasi'])->name('/destinationvisitor/show');

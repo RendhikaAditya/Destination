@@ -20,7 +20,6 @@ class RegisterController extends Controller
             ];
             return view('register', $data);
         }
-        
     }
 
     public function actionRegister(Request $request)
@@ -30,14 +29,14 @@ class RegisterController extends Controller
             'address' => 'required',
             'email' => 'required|unique:users',
             'password' => 'required',
-        ],[
+        ], [
             'name.required' => 'Nama wajib diisi',
             'address.required' => 'Alamat wajib diisi',
             'email.required' => 'Email wajib diisi',
             'email.unique' => 'Email telah terdaftar',
             'password.required' => 'Password wajib diisi',
         ]);
-        
+
         $user = new Visitor();
 
         $user->name = $request->name;
@@ -46,7 +45,6 @@ class RegisterController extends Controller
         $user->password = Hash::make($request->password);
 
         $user->save();
-        return back()->with('success', 'Register Successfully');
-        // dd($request->all());
+        return redirect('/login')->with('success', 'Register Successfully');
     }
 }
