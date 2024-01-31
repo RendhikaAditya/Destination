@@ -13,9 +13,28 @@
   <link rel="stylesheet" href="{{asset('lte/dist/css/skins/_all-skins.min.css')}}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-   <style>
+  <style>
+    .rating-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .star-rating {
+        display: flex;
+        align-items: center;
+        margin-right: 10px; 
+    }
+
+    .star-rating label {
+        margin: 0;
+    }
+</style>
+
+<style>
     .star-rating {
         font-size: 0;
+        direction: rtl; 
+        margin-right: 0; 
     }
 
     .star-rating input {
@@ -26,38 +45,43 @@
         font-size: 30px;
         cursor: pointer;
         display: inline-block;
-        color: #aaa; /* Warna default */
+        color: #aaa; 
     }
 
     .star-rating label:before {
-        content: '\2605'; /* Unicode bintang penuh */
+        content: '\2605';
     }
 
     .star-rating input:checked ~ label:before {
-        content: '\2605'; /* Unicode bintang penuh saat dipilih */
-        color: #FFD700; /* Warna kuning untuk bintang terpilih */
+        content: '\2605';
+        color: #FFD700;
     }
 
     .star-rating input#star1:checked ~ label#star1:before {
-        color: #FF6347; /* Warna merah untuk bintang pertama terpilih */
+        color: #87CEEB; 
     }
 
     .star-rating input#star2:checked ~ label#star2:before {
-        color: #FFA07A; /* Warna light salmon untuk bintang kedua terpilih */
+        color: #98FB98; 
     }
 
     .star-rating input#star3:checked ~ label#star3:before {
-        color: #FFD700; /* Warna kuning untuk bintang ketiga terpilih */
+        color: #FFD700; 
     }
 
     .star-rating input#star4:checked ~ label#star4:before {
-        color: #98FB98; /* Warna pale green untuk bintang keempat terpilih */
+        color: #FFA07A;
     }
 
     .star-rating input#star5:checked ~ label#star5:before {
-        color: #87CEEB; /* Warna sky blue untuk bintang kelima terpilih */
+        color: #FF6347; 
+    }
+
+    button[type="submit"] {
+        margin-right: 10px; 
     }
 </style>
+
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">

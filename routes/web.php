@@ -31,5 +31,5 @@ Route::get('/register', [RegisterController::class, 'register'])->name('register
 Route::post('/register', [RegisterController::class, 'actionregister'])->name('actionregister'); // Route untuk menangani form REGISTER POST
 
 Route::get('/visitor', [VisitorController::class, 'index'])->name('visitor');
-Route::post('/submit-rating/{destination_id}', [VisitorController::class, 'rating'])->name('submit_rating');
+Route::post('/submit-rating/{destination_id}', [VisitorController::class, 'submitRating'])->name('submit_rating');
 Route::get('/destinationvisitor/show/{id}', [VisitorController::class, 'showdestinasi'])->name('/destinationvisitor/show');

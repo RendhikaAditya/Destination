@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Destination;
 use App\Models\City;
 use App\Models\Category;
+use App\Models\Rating;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class VisitorController extends Controller
 {
@@ -47,5 +49,32 @@ class VisitorController extends Controller
         ];
 
         return view('visitor.showDestination', $data);
+    }
+
+    public function submitRating(Request $request, $destinationId)
+    {
+        $validator = Validator::make($request->all(), [
+            'rating' => 'required|integer|between:1,5',
+            'coment' => 'nullable|string|max:255',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+    
+        $destination = Destination::findOrFail($destinationId);
+    
+        $rating = Rating::updateOrCreate(
+            [
+                'visitor_id' => Auth::guard('visitor')->id(),
+                'destination_id' => $destination->id,
+            ],
+            [
+                'rating' => $request->input('rating'),
+                'coment' => $request->input('coment'),
+            ]
+        );
+    
+       return redirect()->back()->with('success', 'Terima kasih atas penilaian Anda');
     }
 }
