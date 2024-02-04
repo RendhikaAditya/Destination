@@ -59,6 +59,7 @@
                         @endif
 
                         <h1>{{ $destinations->name }}</h1>
+     Lokasi: <b>{{ $destinations->address }}</b>
                         <div class="mb-12">
                             <p class="fs-6 border-top font-weight-light"></p>
                             {!! $destinations->description !!}
@@ -78,8 +79,7 @@
                         </div>
 
                         <div class="box-body">
-                            Lokasi: <b>{{ $destinations->address }}</b>
-                            <div class="row">
+                                                        <div class="row">
                                 <div class="col-md-12">
                                     <div class="box box-solid">
                                         {!! $embed_map !!}
@@ -99,26 +99,34 @@
                             @endif
 
                            <h3>Ulasan Pengguna:</h3>
-                           @if($destinations->ratings->count() > 0)
-                               <ul>
-                                   @foreach($destinations->ratings as $rating)
-                                       <li>
-                                           Rating: 
-                                           @for ($i = 1; $i <= 5; $i++)
-                                               @if ($i <= $rating->rating)
-                                                   <span class="star">&#9733;</span>
-                                               @else
-                                                   <span class="star">&#9734;</span>
-                                               @endif
-                                           @endfor
-                                           <br>
-                                           Ulasan: {{ $rating->coment }}
-                                       </li>
-                                   @endforeach
-                               </ul>
-                           @else
-                               <p>Belum ada ulasan untuk destinasi ini.</p>
-                           @endif
+                            @if($destinations->ratings->count() > 0)
+                            <div class="box-footer box-comments">
+                                @foreach($destinations->ratings as $rating)
+                                <div class="box-comment">
+                                    <img class="img-circle img-sm" src="{{asset('lte/dist/img/logo.png')}}"
+                                        alt="User Image">
+                                    <div class="comment-text">
+                                        <span class="username">
+                                         {{ substr($rating->visitor->name, 0, 4) . str_repeat('*', max(0, strlen($rating->visitor->name) - 4)) }}
+                                            <span
+                                                class="text-muted pull-right">{{ $rating->created_at->format('j F Y') }}</span>
+                                        </span>
+                                       
+                                        @for ($i = 1; $i <= 5; $i++) @if ($i <=$rating->rating)
+                                            <span class="star">&#9733;</span>
+                                            @else
+                                            <span class="star">&#9734;</span>
+                                            @endif
+                                            @endfor
+                                            <br>
+                                             {{ $rating->coment }}
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                            @else
+                            <p>Belum ada ulasan untuk destinasi ini.</p>
+                            @endif
                        </div>
 
                    </div>
