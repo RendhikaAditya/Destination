@@ -73,9 +73,8 @@
                                 @endif
                             </p>
                         </div>
-
+                        <br>&nbsp;
                         <div class="box-body">
-                            
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="box box-solid">
@@ -104,11 +103,11 @@
                                         alt="User Image">
                                     <div class="comment-text">
                                         <span class="username">
-                                         {{ substr($rating->visitor->name, 0, 4) . str_repeat('*', max(0, strlen($rating->visitor->name) - 4)) }}
+                                            {{ substr($rating->visitor->name, 0, 4) . str_repeat('*', max(0, strlen($rating->visitor->name) - 4)) }}
                                             <span
                                                 class="text-muted pull-right">{{ $rating->created_at->format('j F Y') }}</span>
                                         </span>
-                                       
+
                                         @for ($i = 1; $i <= 5; $i++) @if ($i <=$rating->rating)
                                             <span class="star">&#9733;</span>
                                             @else
@@ -116,7 +115,7 @@
                                             @endif
                                             @endfor
                                             <br>
-                                             {{ $rating->coment }}
+                                            {{ $rating->coment }}
                                     </div>
                                 </div>
                                 @endforeach
