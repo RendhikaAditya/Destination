@@ -51,9 +51,11 @@
                         @else
                         <p>Belum ada ulasan untuk destinasi ini.</p>
                         @endif
+
+                    </div>
+                    <div class="box-header">
                         Lokasi: <b>{{ $destinations->address }}</b>
                     </div>
-
 
                     <div class="box-body">
                         <div class="mb-12">
